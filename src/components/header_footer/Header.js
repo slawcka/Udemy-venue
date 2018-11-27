@@ -10,8 +10,19 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import SideDrawer from './SideDrawer';
 
 class Header extends Component {
+
+    state={
+        drawerOpen:false
+    }
+
+    toggleDrawer=(value)=>{
+        this.setState({
+            drawerOpen:value
+        })
+    }
     render() {
         return (
            
@@ -31,10 +42,14 @@ class Header extends Component {
                     <IconButton
                     aria-label="Menu"
                     color="inherit"
-                    onClick={()=>console.log('dicks')}
+                    onClick={()=>this.toggleDrawer(true)}
                     >
                         <MenuIcon/>
                     </IconButton>
+                    <SideDrawer
+                    open={this.state.drawerOpen}
+                    onClose={(value)=>this.toggleDrawer(value)}
+                    />
                 </Toolbar>
                 </AppBar>
           
